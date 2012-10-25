@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Backbone Demo</title>
+  </head>
+  <body>
+
+    <script type="text/javascript" src="../../steal/steal.js"></script>
+    <script type="text/javascript">
+
+      steal('can/util/jquery').then('backbone/bridge.js', function(){
+
+        var DocumentView = Backbone.View.extend({
+
+          events: {
+            "dblclick": "open"
+          },
+
+          render: function() {
+            $(this.el).html(this.template(this.model.toJSON()));
+            return this;
+          },
+
+          open: function() {
+            window.open('http://www.google.com');
+          }
+
+        });
+
+      });
+
+    </script>
+
+  </body>
+</html>

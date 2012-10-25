@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Backbone Demo</title>
+  </head>
+  <body>
+
+    <script type="text/javascript" src="../../steal/steal.js"></script>
+    <script type="text/javascript">
+
+      steal('can/util/jquery').then('backbone/bridge.js', function(){
+
+        var Sidebar = Backbone.Model.extend({
+          promptColor: function() {
+            var cssColor = prompt("Please enter a CSS color:");
+            this.set({color: cssColor});
+          }
+        });
+
+        window.sidebar = new Sidebar;
+
+        sidebar.on('change:color', function(model, color) {
+          $(document.body).css({background: color});
+        });
+
+        sidebar.set({color: 'white'});
+        sidebar.promptColor();
+
+      });
+
+    </script>
+
+  </body>
+</html>
